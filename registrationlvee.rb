@@ -67,8 +67,9 @@ module MyModule
       Capybara.visit 'http://www.fakeinbox.com/'
       #sleep 5
       #Capybara.click_on('Show')
+      Capybara.visit Capybara.find('a', :text => 'Show')[:href]
       sleep 5
-      Capybara.click_on('http://summer.lvee.org')
+      Capybara.click_on('http://summer.lvee.org/activate')
       sleep 20
     end
 
