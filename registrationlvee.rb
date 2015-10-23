@@ -34,8 +34,8 @@ module MyModule
       Capybara.fill_in('record_email_', :with => @email)
       Capybara.fill_in('record_first_name_', :with => 'Galina')
       Capybara.fill_in('record_last_name_', :with => 'Test')
-      #Capybara.click('record_country')
-      #Capybara.click('Belarus')
+      Capybara.find('#record_country').find(:xpath, 'option[2]').select_option #first Belarus
+      #Capybara.select("Albania", :from => 'record_country') # except duplicated countries
       Capybara.fill_in('record_city_', :with => 'Minsk')
       Capybara.fill_in('record_occupation_', :with => 'Test')
       Capybara.check('record_subscribed_')
