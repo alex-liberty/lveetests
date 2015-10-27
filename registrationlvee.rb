@@ -68,11 +68,13 @@ module MyModule
       #sleep 5
       #Capybara.click_on('Show')
       Capybara.visit Capybara.find('a', :text => 'Show')[:href]
-      sleep 5
-      Capybara.click_on('http://summer.lvee.org/activate')
-      sleep 20
+      Capybara.visit Capybara.find('a', :text => 'http://summer.lvee.org/activate')[:href]
     end
-
+    
+    def user_logout
+      Capybara.click_on('Logout')
+      sleep 10
+    end
   end
 end
 
@@ -94,6 +96,7 @@ while i < numberOfUsers.to_i
   t.rules_agree
   t.form_filling
   t.email_confirm
+  t.user_logout
   logins = logins + [login + ' ' + email]
   i+=1
 end
