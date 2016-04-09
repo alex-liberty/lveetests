@@ -45,7 +45,7 @@ module MyModule
 
     def nick_generate
       Capybara.visit('http://nick-name.ru/generate/')
-      Capybara.click_on('Генерировать')
+      Capybara.click_on('generate')
       return Capybara.find_field('resname').value
     end
 
