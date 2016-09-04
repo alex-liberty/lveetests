@@ -3,8 +3,17 @@ require 'capybara'
 require 'capybara/dsl'
 
 include Capybara::DSL
-
-Capybara.current_driver = :selenium
+Capybara.default_driver = :chrome
+ Capybara.register_driver :chrome do |app|
+ # options = {
+ # :js_errors => false,
+ # :timeout => 360,
+ # :debug => false,
+ # :inspector => false,
+ # }
+ Capybara::Selenium::Driver.new(app, :browser => :chrome)
+ end
+#Capybara.current_driver = :selenium
 module MyModule
 
   class Registrator
@@ -25,7 +34,7 @@ module MyModule
 
     def form_filling
 
-      Capybara.current_driver = :selenium
+      #Capybara.current_driver = :selenium
       #   Capybara.visit('https://lvee.org')
       #   Capybara.click_link('Register')
       Capybara.fill_in('record_login_', :with => @login)
@@ -34,13 +43,13 @@ module MyModule
       Capybara.fill_in('record_email_', :with => @email)
       Capybara.fill_in('record_first_name_', :with => 'Galina')
       Capybara.fill_in('record_last_name_', :with => 'Test')
-      Capybara.find('#record_country').find(:xpath, 'option[2]').select_option #first Belarus
+      Capybara.find('#record_country_').find(:xpath, 'option[2]').select_option #first Belarus
       #Capybara.select("Albania", :from => 'record_country') # except duplicated countries
       Capybara.fill_in('record_city_', :with => 'Minsk')
       Capybara.fill_in('record_occupation_', :with => 'Test')
       Capybara.check('record_subscribed_')
       Capybara.check('record_subscribed_talks_')
-      Capybara.click_button('Register')
+      Capybara.click_button('Create')
     end
 
     def nick_generate
