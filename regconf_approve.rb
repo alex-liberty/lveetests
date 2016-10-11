@@ -96,6 +96,10 @@ module Reg_and_aprrove
   end
 end
 
+login =
+password =
+loginadmin =
+passwordadmin =
 yes = Reg_and_aprrove::Registration.new
 yes.loginfirst
 yes.reg_conference_first
