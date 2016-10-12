@@ -27,9 +27,9 @@ module MyModule
     end
 
     def rules_agree
-      Capybara.visit('http://localhost:3000/en/users/new')
-      #Capybara.click_link('Register')
-      # find('.data-agreement > label:nth-child(2)').click
+      Capybara.visit('http://localhost:3000/')
+      Capybara.click_link('Register')
+       #find('.data-agreement > label:nth-child(2)').click
     end
 
     def form_filling
@@ -47,8 +47,8 @@ module MyModule
       #Capybara.select("Albania", :from => 'record_country') # except duplicated countries
       Capybara.fill_in('record_city_', :with => 'Minsk')
       Capybara.fill_in('record_occupation_', :with => 'Test')
-      Capybara.check('record_subscribed_')
-      Capybara.check('record_subscribed_talks_')
+      #Capybara.check('record_subscribed_')
+      #Capybara.check('record_subscribed_talks_')
       Capybara.click_button('Create')
     end
 
@@ -72,11 +72,11 @@ module MyModule
     end
 
     def email_confirm
-      sleep 10
+      sleep 5
       Capybara.visit 'http://www.fakeinbox.com/'
       #sleep 5
       #Capybara.click_on('Show')
-	sleep 5 
+	    sleep 5
       Capybara.visit Capybara.find('a', :text => 'Show')[:href]
       Capybara.visit Capybara.find('a', :text => 'http://localhost:3000/activate')[:href]
     end

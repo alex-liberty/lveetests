@@ -52,7 +52,7 @@ module Reg
 
     def reg_conference_first
       # #регимся в первый раз
-      Capybara.click_link('Register to test1') #заменить на XPath
+      Capybara.click_link('Register to test5') #заменить на XPath
       Capybara.fill_in('record_proposition_', :with => 'testing site')
       Capybara.fill_in('record_quantity_', :with => '5')
       Capybara.click_button('Create')
@@ -83,9 +83,10 @@ module Reg
 
     def approve_all
       Capybara.visit(@site + 'en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
+      sleep 5
       Capybara.click_link('as_admin__conference_registrations-approve_all--link')
       Capybara.find('#conference_id').click
-      Capybara.select('test1')
+      Capybara.select('test5')
       Capybara.click_button('Approve all')
       sleep 5
       Capybara.click_on('Logout')
@@ -122,11 +123,10 @@ yes.login('Pelyamarunique')
 yes.password(6279508)
 yes.loginadmin('Darling')
 yes.passwordadmin(6279508)
-
-# yes.loginfirst
-# yes.reg_conference_first
-# yes.login_admin
+#yes.loginfirst
+#yes.reg_conference_first
+yes.login_admin
 #yes.approve_user
-# yes.approve_all
+yes.approve_all
 yes.loginfirst
 yes.two_anketa
