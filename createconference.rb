@@ -50,7 +50,8 @@ end
 
 c = Createconference::Createconference.new
 
-login =
-password =
+c.login = ''
+c.password = 6279508
 c.create
+
 
