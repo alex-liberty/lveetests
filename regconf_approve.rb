@@ -42,6 +42,10 @@ module Reg
       @site = site
     end
 
+    def namecof(namecof)
+      @namecof = namecof
+    end
+
 
     def loginfirst
 
@@ -56,7 +60,7 @@ module Reg
 
     def reg_conference_first
       # #регимся в первый раз
-      Capybara.click_link('Register to test5') #заменить на XPath
+      Capybara.click_link('Register to' + @namecof) #заменить на XPath
       Capybara.fill_in('record_proposition_', :with => 'testing site')
       Capybara.fill_in('record_quantity_', :with => '5')
       Capybara.click_button('Create')
@@ -90,7 +94,7 @@ module Reg
       sleep 5
       Capybara.click_link('as_admin__conference_registrations-approve_all--link')
       Capybara.find('#conference_id').click
-      Capybara.select('test5')
+      Capybara.select(@namecof)
       Capybara.click_button('Approve all')
       sleep 5
       Capybara.click_on('Logout')
@@ -127,6 +131,7 @@ yes.login('Pelyamarunique')
 yes.password(6279508)
 yes.loginadmin('Darling')
 yes.passwordadmin(6279508)
+yes.namecof('test5')
 #yes.loginfirst
 #yes.reg_conference_first
 yes.login_admin
