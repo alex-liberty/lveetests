@@ -18,6 +18,10 @@ end
 module Reg
   class Registration
 
+    # def initialize(name, age, weight)
+    #   @name, @age, @weight = name, age, weight
+    # end
+
     def login(login)
       @login = login
     end
