@@ -16,6 +16,7 @@ Capybara.default_driver = :chrome
  # }
  Capybara::Selenium::Driver.new(app, :browser => :chrome)
  end
+
 module Av
  class Change
 
@@ -40,9 +41,6 @@ module Av
 end
 
 ch = Av::Change.new('Pelyamarunique', 6279508, 'http://localhost:3000/')
-# ch.site('http://localhost:3000/')
-# ch.login('Pelyamarunique')
-# ch.pass(6279508)
 ch.create
 
 
