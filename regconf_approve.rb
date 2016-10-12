@@ -15,7 +15,7 @@ Capybara.register_driver :chrome do |app|
 end
 
 
-module Reg_and_aprrove
+module Reg
   class Registration
 
     def login(login)
@@ -58,8 +58,8 @@ module Reg_and_aprrove
       #тут логинимся за админа
       Capybara.visit('http://localhost:3000/') #переделать
       Capybara.click_link('Log')
-      Capybara.fill_in('login', :with => @loginadmin)
-      Capybara.fill_in('password', :with => passwordadmin)
+      Capybara.fill_in('login', :with => 'Darling')
+      Capybara.fill_in('password', :with => 6279508)
       Capybara.click_button('Log')
 
     end
@@ -67,13 +67,26 @@ module Reg_and_aprrove
     def approve_user
       Capybara.visit('http://localhost:3000/en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
       Capybara.click_link('as_admin__conference_registrations-edit-1-link') #сделать по имени
-      #или апрув алл
+
+         #или апрув алл
       Capybara.find('#record_status_name').click
       Capybara.select('approved')
       Capybara.click_button('Update')
       Capybara.click_on('Logout')
 
     end
+
+    def approve_all
+      Capybara.visit('http://localhost:3000/en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
+      Capybara.click_link('as_admin__conference_registrations-approve_all--link')
+      Capybara.find('#conference_id').click
+      Capybara.select('test1')
+      Capybara.click_button('Approve all')
+      #sleep 20
+      Capybara.click_on('Logout')
+    end
+
+
         #login
 
     def two_anketa
@@ -81,7 +94,7 @@ module Reg_and_aprrove
       Capybara.find(:xpath, '//*[@id="login-panel"]/ul/li[1]').click
       Capybara.find(:xpath, './/*[@id="article-bg"]/div[1]/p[5]/a[1]').click
       #Capybara.find(:a, :text => 'Confirm').click_link
-      sleep 20
+      sleep 5
       Capybara.check('record_days_', match: :first)
       Capybara.fill_in('record_meeting_1', :with => '+375256279508')
       Capybara.check('record_floor')
@@ -96,14 +109,25 @@ module Reg_and_aprrove
   end
 end
 
-login =
-password =
-loginadmin =
-passwordadmin =
-yes = Reg_and_aprrove::Registration.new
-yes.loginfirst
-yes.reg_conference_first
+
+yes = Reg::Registration.new
+logins = []
+
+
+yes.login('Onarirarounique')
+yes.password(6279508)
+# yes.loginadmin(loginadmin)
+# yes.passwordadmin(passwordadmin)
+# login = 'Onarirarounique'
+# password = '6279508'
+# loginadmin = 'Darling'
+# passwordadmin = '6279508'
+#yes.loginfirst
+#yes.reg_conference_first
 yes.login_admin
-yes.approve_user
+#yes.approve_user
+yes.approve_all
 yes.loginfirst
 yes.two_anketa
+logins = logins + [login + ' ' + password]
+puts logins
