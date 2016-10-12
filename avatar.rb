@@ -16,15 +16,33 @@ Capybara.default_driver = :chrome
  # }
  Capybara::Selenium::Driver.new(app, :browser => :chrome)
  end
+module Av
+ class Change
 
-Capybara.visit('http://localhost:3000/')
-Capybara.click_link('Log')
-Capybara.fill_in('login', :with => 'Pelyamarunique')
-Capybara.fill_in('password', :with => '6279508')
-Capybara.click_button('Log')
-Capybara.attach_file('user_avator', '/media/files/Photo/Аватарки/1.jpeg')
-Capybara.click_button('Upload')
-#sleep 20
-#Capybara.find("//input[@type='file']", :with => '/media/files/Photo/Аватарки/DSC_0700.jpg')
+  def initialize(login, pass, site)
+    @login, @pass, @site = login, pass, site
+  end
+
+   def create
+
+    Capybara.visit(@site)
+    Capybara.click_link('Log')
+    Capybara.fill_in('login', :with => @login)
+    Capybara.fill_in('password', :with => @pass)
+    Capybara.click_button('Log')
+    Capybara.attach_file('user_avator', '/media/files/Photo/Аватарки/1.jpeg')
+    Capybara.click_button('Upload')
+    sleep 3
+    #Capybara.find("//input[@type='file']", :with => '/media/files/Photo/Аватарки/DSC_0700.jpg')
+
+   end
+ end
+end
+
+ch = Av::Change.new('Pelyamarunique', 6279508, 'http://localhost:3000/')
+# ch.site('http://localhost:3000/')
+# ch.login('Pelyamarunique')
+# ch.pass(6279508)
+ch.create
 
 
