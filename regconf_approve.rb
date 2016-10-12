@@ -34,10 +34,15 @@ module Reg
       @passwordadmin = passwordadmin
     end
 
+    def site(site)
+      @site = site
+    end
+
+
     def loginfirst
 
       # #логинимся
-      Capybara.visit('http://localhost:3000/')
+      Capybara.visit(@site)
       Capybara.click_link('Log')
       Capybara.fill_in('login', :with => @login) #Fongieunique
       Capybara.fill_in('password', :with => @password)
@@ -56,7 +61,7 @@ module Reg
 
     def login_admin
       #тут логинимся за админа
-      Capybara.visit('http://localhost:3000/') #переделать
+      Capybara.visit(@site)
       Capybara.click_link('Log')
       Capybara.fill_in('login', :with =>  @loginadmin)
       Capybara.fill_in('password', :with =>  @passwordadmin)
@@ -65,7 +70,7 @@ module Reg
     end
 
     def approve_user
-      Capybara.visit('http://localhost:3000/en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
+      Capybara.visit(@site + 'en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
       Capybara.click_link('as_admin__conference_registrations-edit-1-link') #сделать по имени
 
          #или апрув алл
@@ -77,26 +82,26 @@ module Reg
     end
 
     def approve_all
-      Capybara.visit('http://localhost:3000/en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
+      Capybara.visit(@site + 'en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
       Capybara.click_link('as_admin__conference_registrations-approve_all--link')
       Capybara.find('#conference_id').click
       Capybara.select('test1')
       Capybara.click_button('Approve all')
-      #sleep 20
+      sleep 5
       Capybara.click_on('Logout')
     end
 
 
-        #login
-
     def two_anketa
       #вторая анкета
       Capybara.find(:xpath, '//*[@id="login-panel"]/ul/li[1]').click
-      Capybara.find(:xpath, './/*[@id="article-bg"]/div[1]/p[5]/a[1]').click
+      sleep 2
+      Capybara.click_link('Confirm participation')
+      #Capybara.find(:xpath, './/*[@id="article-bg"]/div[1]/p[5]/a[1]').click
       #Capybara.find(:a, :text => 'Confirm').click_link
       sleep 5
       Capybara.check('record_days_', match: :first)
-      Capybara.fill_in('record_meeting_1', :with => '+375256279508')
+      Capybara.fill_in('record[meeting]', :with => '+375256279508')
       Capybara.check('record_floor')
       #Capybara.click_button('Select')
       Capybara.find('#record_transport_to').find(:xpath, 'option[2]').select_option
@@ -112,16 +117,16 @@ end
 
 yes = Reg::Registration.new
 
-
-yes.login('Onarirarounique')
+yes.site('http://localhost:3000/')
+yes.login('Pelyamarunique')
 yes.password(6279508)
 yes.loginadmin('Darling')
 yes.passwordadmin(6279508)
 
-#yes.loginfirst
-#yes.reg_conference_first
-yes.login_admin
+# yes.loginfirst
+# yes.reg_conference_first
+# yes.login_admin
 #yes.approve_user
-yes.approve_all
+# yes.approve_all
 yes.loginfirst
 yes.two_anketa
