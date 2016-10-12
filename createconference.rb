@@ -51,8 +51,6 @@ module Cr
 end
 
 c = Cr::Createcl.new
-
-
 c.login('Darling')
 c.password('6279508')
 c.create
