@@ -58,8 +58,8 @@ module Reg
       #тут логинимся за админа
       Capybara.visit('http://localhost:3000/') #переделать
       Capybara.click_link('Log')
-      Capybara.fill_in('login', :with => 'Darling')
-      Capybara.fill_in('password', :with => 6279508)
+      Capybara.fill_in('login', :with =>  @loginadmin)
+      Capybara.fill_in('password', :with =>  @passwordadmin)
       Capybara.click_button('Log')
 
     end
@@ -111,17 +111,13 @@ end
 
 
 yes = Reg::Registration.new
-logins = []
 
 
 yes.login('Onarirarounique')
 yes.password(6279508)
-# yes.loginadmin(loginadmin)
-# yes.passwordadmin(passwordadmin)
-# login = 'Onarirarounique'
-# password = '6279508'
-# loginadmin = 'Darling'
-# passwordadmin = '6279508'
+yes.loginadmin('Darling')
+yes.passwordadmin(6279508)
+
 #yes.loginfirst
 #yes.reg_conference_first
 yes.login_admin
@@ -129,5 +125,3 @@ yes.login_admin
 yes.approve_all
 yes.loginfirst
 yes.two_anketa
-logins = logins + [login + ' ' + password]
-puts logins
