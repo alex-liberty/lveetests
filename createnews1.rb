@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'capybara'
 require 'capybara/dsl'
+#require 'capybara-webkit'
 require 'selenium-webdriver'
 
 
@@ -29,18 +30,18 @@ module News
     end
 
     def create
-      Capybara.visit('https://localhost:3000/')
+      Capybara.visit('http://localhost:3000/en/main')
       Capybara.click_link('Log')
       Capybara.fill_in('login', :with => @login) #@login
       Capybara.fill_in('password', :with => @password)
       Capybara.click_button('Log')
-      Capybara.visit('https://localhost:3000/en/news/') #.//*[@id='sub-menu']/li[2]/ul/li[2]/a
+      Capybara.visit('http://localhost:3000/en/news/') #.//*[@id='sub-menu']/li[2]/ul/li[2]/a
       Capybara.click_link('Add News')
       Capybara.fill_in('news_title', :with => 'testnews')
       Capybara.fill_in('news_lead', :with => 'testtext')
       Capybara.fill_in('news_body', :with => 'testststststtststststst')
       sleep 3
-      Capybara.click_button('commit')
+      Capybara.click_button('Save')
     end
 
 
