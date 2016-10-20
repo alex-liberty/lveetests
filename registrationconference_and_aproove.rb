@@ -1,21 +1,7 @@
 # encoding: utf-8
-require 'capybara'
-require 'capybara/dsl'
+load 'config.rb'
+
 require 'selenium-webdriver'
-
-
-include Capybara::DSL
-
-Capybara.default_driver = :chrome
-Capybara.register_driver :chrome do |app|
-  # options = {
-  # :js_errors => false,
-  # :timeout => 360,
-  # :debug => false,
-  # :inspector => false,
-  # }
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
 
 # #логинимся
 # Capybara.visit('http://localhost:3000/')
@@ -33,14 +19,14 @@ end
 # sleep 20
 
 #тут логинимся за админа
-Capybara.visit('http://localhost:3000/') #переделать
+Capybara.visit("#{SITE}") #переделать
 Capybara.click_link('Log')
 Capybara.fill_in('login', :with => 'Darling')
 Capybara.fill_in('password', :with => '6279508')
 Capybara.click_button('Log')
 
 #approve user
-Capybara.visit('http://localhost:3000/en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
+Capybara.visit("#{SITE}/en/admin/conference_registrations") #.//*[@id='sub-menu']/li[2]/ul/li[4]
 Capybara.click_link('as_admin__conference_registrations-edit-1-link') #сделать по имени
 												#или апрув алл
 Capybara.find('#record_status_name').click
@@ -48,7 +34,7 @@ Capybara.select('approved')
 Capybara.click_button('Update')
 Capybara.click_on('Logout')
 
-Capybara.visit('http://localhost:3000/')
+Capybara.visit("#{SITE}")
 Capybara.click_link('Log')
 Capybara.fill_in('login', :with => 'Fongieunique')
 Capybara.fill_in('password', :with => '6279508')
