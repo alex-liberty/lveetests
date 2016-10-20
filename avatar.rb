@@ -1,21 +1,6 @@
 # encoding: utf-8
-require 'capybara'
-require 'capybara/dsl'
+load 'config.rb'
 require 'selenium-webdriver'
-
-
-include Capybara::DSL
-
-Capybara.default_driver = :chrome
- Capybara.register_driver :chrome do |app|
- # options = {
- # :js_errors => false,
- # :timeout => 360,
- # :debug => false,
- # :inspector => false,
- # }
- Capybara::Selenium::Driver.new(app, :browser => :chrome)
- end
 
 module Av
  class Change
@@ -40,7 +25,7 @@ module Av
  end
 end
 
-ch = Av::Change.new('Pelyamarunique', 6279508, 'http://localhost:3000/')
+ch = Av::Change.new('Pelyamarunique', 6279508, "#{SITE}")
 ch.create
 
 
