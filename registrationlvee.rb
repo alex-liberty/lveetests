@@ -1,19 +1,6 @@
 # coding: utf-8
-require 'capybara'
-require 'capybara/dsl'
+load 'config.rb'
 
-include Capybara::DSL
-Capybara.default_driver = :chrome
- Capybara.register_driver :chrome do |app|
- # options = {
- # :js_errors => false,
- # :timeout => 360,
- # :debug => false,
- # :inspector => false,
- # }
- Capybara::Selenium::Driver.new(app, :browser => :chrome)
- end
-#Capybara.current_driver = :selenium
 module MyModule
 
   class Registrator
