@@ -1,11 +1,6 @@
 # encoding: utf-8
-require 'capybara' 
-require 'capybara/dsl' 
+load 'config.rb'
 
-include Capybara::DSL
-
-
-Capybara.current_driver = :selenium
 Capybara.visit('https://lvee.org')
 Capybara.click_link('Register')
 Capybara.fill_in('record_login_', :with => 'dgxdfmxcvc')
