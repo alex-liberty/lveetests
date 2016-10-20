@@ -77,7 +77,7 @@ module MyModule
       #sleep 5
       #Capybara.click_on('Show')
       Capybara.visit Capybara.find('a', :text => 'Show')[:href]
-      Capybara.visit Capybara.find('a', :text => 'http://summer.lvee.org/activate')[:href]
+      Capybara.visit Capybara.find('a', :text => '/activate/')[:href]
     end
     
     def user_logout
