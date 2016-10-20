@@ -28,6 +28,10 @@ module Cr
    @password = password
   end
 
+  def namecof(namecof)
+   @namecof = namecof
+  end
+
    def create
     Capybara.visit('http://localhost:3000/')
     Capybara.click_link('Log')
@@ -38,7 +42,7 @@ module Cr
     # Capybara.click_link('Admin')
     # Capybara.visit Capybara.find('a', :text => 'Conferences admin')[:href]
     Capybara.click_link('as_admin__conferences-new--link')
-    Capybara.fill_in('record_name_', :with => 'test5')
+    Capybara.fill_in('record_name_', :with => @namecof)
     Capybara.fill_in('record_start_date_', :with => '2016-11-30')
     Capybara.fill_in('record_finish_date_',:with => '2016-12-14')
     sleep 3
@@ -53,5 +57,6 @@ end
 c = Cr::Createcl.new
 c.login('Darling')
 c.password('6279508')
+c.namecof('test5')
 c.create
 
