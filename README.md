@@ -8,4 +8,4 @@ Download chromedriver http://chromedriver.storage.googleapis.com/index.html in p
     git clone https://github.com/SpringStorm5/lveetests
     cd ./lveetests
 
-Read more [instractions](https://github.com/fiowro/lvee-doc/blob/master/install.textile).
+Read more [instructions](https://github.com/fiowro/lvee-doc/blob/master/install.textile).
