@@ -1,19 +1,6 @@
 # coding: utf-8
-require 'capybara'
-require 'capybara/dsl'
+load 'config.rb'
 
-include Capybara::DSL
-Capybara.default_driver = :chrome
- Capybara.register_driver :chrome do |app|
- # options = {
- # :js_errors => false,
- # :timeout => 360,
- # :debug => false,
- # :inspector => false,
- # }
- Capybara::Selenium::Driver.new(app, :browser => :chrome)
- end
-#Capybara.current_driver = :selenium
 module MyModule
 
   class Registrator
@@ -27,7 +14,7 @@ module MyModule
     end
 
     def rules_agree
-      Capybara.visit('http://localhost:3000/')
+      Capybara.visit("#{SITE}")
       Capybara.click_link('Register')
        #find('.data-agreement > label:nth-child(2)').click
     end
@@ -80,7 +67,7 @@ module MyModule
       Capybara.visit Capybara.find('a', :text => 'Show')[:href]
       Capybara.visit Capybara.find('a', :text => '/activate/')[:href]
     end
-    
+
     def user_logout
       Capybara.click_on('Logout')
       sleep 10
