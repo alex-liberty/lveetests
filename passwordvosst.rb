@@ -1,20 +1,6 @@
 # encoding: utf-8
-require 'capybara'
-require 'capybara/dsl'
+load 'config.rb'
 
-include Capybara::DSL
-
-#Capybara.current_driver = :selenium
-Capybara.default_driver = :chrome
- Capybara.register_driver :chrome do |app|
- # options = {
- # :js_errors => false,
- # :timeout => 360,
- # :debug => false,
- # :inspector => false,
- # }
- Capybara::Selenium::Driver.new(app, :browser => :chrome)
- end
 Capybara.visit('https://lvee.org')
 Capybara.click_link('Log')
 Capybara.click_link('Restore')
