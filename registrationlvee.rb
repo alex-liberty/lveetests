@@ -15,8 +15,7 @@ module MyModule
 
     def rules_agree
       Capybara.visit('https://lvee.org')
-      Capybara.click_link('Register')
-      # find('.data-agreement > label:nth-child(2)').click
+      Capybara.find(:xpath, '//*[@id="login-panel"]/ul/li[3]/a').click
     end
 
     def form_filling
