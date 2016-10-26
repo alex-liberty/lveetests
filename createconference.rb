@@ -20,11 +20,12 @@ module Cr
 
    def create
     Capybara.visit("#{SITE}")
-    Capybara.click_link('Log')
+    Capybara.find(:xpath, '//*[@id="login-panel"]/ul/li[1]/a').click
+    #Capybara.click_link('Log')
     Capybara.fill_in('login', :with => @login) #@login
     Capybara.fill_in('password', :with => @password)
     Capybara.click_button('Log')
-    Capybara.visit("#{SITE}/en/admin/conferences") #.//*[@id='sub-menu']/li[2]/ul/li[2]/a
+    Capybara.visit("#{SITE} + /admin/conferences") #.//*[@id='sub-menu']/li[2]/ul/li[2]/a
     # Capybara.click_link('Admin')
     # Capybara.visit Capybara.find('a', :text => 'Conferences admin')[:href]
     Capybara.click_link('as_admin__conferences-new--link')
@@ -41,7 +42,7 @@ module Cr
 end
 
 c = Cr::Createcl.new
-c.login('Tlinainauunique')
+c.login('Darling')
 c.password('6279508')
 c.namecof('test5')
 c.create
