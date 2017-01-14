@@ -1,11 +1,11 @@
 # encoding: utf-8
 load 'config.rb'
-Capybara.visit('http://localhost:3000/')
+Capybara.visit("#{SITE}")
 Capybara.find(:xpath, '//*[@id="login-panel"]/ul/li[3]/a').click
-Capybara.fill_in('record_login_', :with => 'Darling')
+Capybara.fill_in('record_login_', :with => 'Hunny')
 Capybara.fill_in('record_password_', :with => '6279508')
 Capybara.fill_in('record_password_confirmation_', :with => '6279508')
-Capybara.fill_in('record_email_', :with => 'springstorm666@gmail.com')
+Capybara.fill_in('record_email_', :with => '1_11@tut.by')
 Capybara.fill_in('record_first_name_', :with => 'Galina')
 Capybara.fill_in('record_last_name_', :with => 'Test')
 Capybara.find('#record_country_').find(:xpath, 'option[2]').select_option #first Belarus

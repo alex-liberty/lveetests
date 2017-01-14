@@ -10,21 +10,21 @@ module Reg
     #   @name, @age, @weight = name, age, weight
     # end
 
-    def login(login)
-      @login = login
-    end
+    # def login(login)
+    #   @login = login
+    # end
 
-    def password(password)
-      @password = password
-    end
+    # def password(password)
+    #   @password = password
+    # end
 
-    def loginadmin(loginadmin)
-      @loginadmin = loginadmin
-    end
+    # def loginadmin(loginadmin)
+    #   @loginadmin = loginadmin
+    # end
 
-    def passwordadmin(passwordadmin)
-      @passwordadmin = passwordadmin
-    end
+    # def passwordadmin(passwordadmin)
+    #   @passwordadmin = passwordadmin
+    # end
 
     def site(site)
       @site = site
@@ -35,46 +35,35 @@ module Reg
     end
 
 
-    def loginfirst
+    def login (login, password)
 
       # #логинимся
       Capybara.visit(@site)
       Capybara.click_link('Log')
-      Capybara.fill_in('login', :with => @login) #Fongieunique
-      Capybara.fill_in('password', :with => @password)
+      Capybara.fill_in('login', :with => login) #Fongieunique
+      Capybara.fill_in('password', :with => password)
       Capybara.click_button('Log')
 
     end
 
     def reg_conference_first
       # #регимся в первый раз
-      Capybara.click_link('Register to' + @namecof) #заменить на XPath
+      Capybara.click_link('Register to' + " " + @namecof) #заменить на XPath
       Capybara.fill_in('record_proposition_', :with => 'testing site')
       Capybara.fill_in('record_quantity_', :with => '5')
       Capybara.click_button('Create')
       Capybara.click_on('Logout')
-    end
-
-    def login_admin
-      #тут логинимся за админа
-      Capybara.visit(@site)
-      Capybara.click_link('Log')
-      Capybara.fill_in('login', :with =>  @loginadmin)
-      Capybara.fill_in('password', :with =>  @passwordadmin)
-      Capybara.click_button('Log')
-
+      #bundle exec rake get_role:admin:logins "Darling"
     end
 
     def approve_user
       Capybara.visit(@site + 'en/admin/conference_registrations') #.//*[@id='sub-menu']/li[2]/ul/li[4]
       Capybara.click_link('as_admin__conference_registrations-edit-1-link') #сделать по имени
-
          #или апрув алл
       Capybara.find('#record_status_name').click
       Capybara.select('approved')
       Capybara.click_button('Update')
       Capybara.click_on('Logout')
-
     end
 
     def approve_all
@@ -115,15 +104,18 @@ end
 yes = Reg::Registration.new
 
 yes.site("#{SITE}")
-yes.login('Pelyamarunique')
-yes.password(6279508)
-yes.loginadmin('Darling')
-yes.passwordadmin(6279508)
+
+
+# yes.password(6279508)
+# yes.loginadmin('Darling')
+# yes.passwordadmin(6279508)
 yes.namecof('test5')
+yes.login('Hunny', 6279508)
 #yes.loginfirst
-#yes.reg_conference_first
-yes.login_admin
+yes.reg_conference_first
+yes.login('Darling', 6279508)
+#yes.login_admin
 #yes.approve_user
 yes.approve_all
-yes.loginfirst
+yes.login('Hunny', 6279508)
 yes.two_anketa

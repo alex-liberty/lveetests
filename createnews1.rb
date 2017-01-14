@@ -25,7 +25,7 @@ module News
       Capybara.fill_in('news_title', :with => 'testnews')
       Capybara.fill_in('news_lead', :with => 'testtext')
       Capybara.fill_in('news_body', :with => 'testststststtststststst')
-      sleep 3
+      #sleep 3
       Capybara.click_button('Save')
     end
 

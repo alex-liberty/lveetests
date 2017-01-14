@@ -16,7 +16,7 @@ module Av
     Capybara.fill_in('login', :with => @login)
     Capybara.fill_in('password', :with => @pass)
     Capybara.click_button('Log')
-    Capybara.attach_file('user_avator', '/media/files/Photo/Аватарки/1.jpeg')
+    Capybara.attach_file('user_avator', './lvee.png')
     Capybara.click_button('Upload')
     sleep 3
     #Capybara.find("//input[@type='file']", :with => '/media/files/Photo/Аватарки/DSC_0700.jpg')
@@ -25,7 +25,7 @@ module Av
  end
 end
 
-ch = Av::Change.new('Pelyamarunique', 6279508, "#{SITE}")
+ch = Av::Change.new('Darling', 6279508, "#{SITE}")
 ch.create
 
 
